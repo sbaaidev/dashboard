@@ -6,14 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
- private  menueitem:string[]=[];
+menueitem=[
+  {
+      name: 'Gestion des plats'
+  },
+  {
+      name: 'Gestion des tables'
+  },
+  {
+    name: 'Gestion des serveurs'
+}
+];
   constructor() { }
 
 
   ngOnInit(): void {
-    this.menueitem=["Gestion des plas",
-  "gestion des factures",
-"gestion des secrteurs"]
+
   }
 
 }
