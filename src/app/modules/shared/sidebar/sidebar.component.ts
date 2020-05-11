@@ -8,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 menueitem=[
   {
-      name: 'Gestion des plats'
+      name: 'Gestion des plats',
+      path: '/plat'
   },
   {
-      name: 'Gestion des tables'
+      name: 'Gestion des tables',
+      path: '/table'
   },
   {
-    name: 'Gestion des serveurs'
+    name: 'Gestion des serveurs',
+    path: '/serveur'
 }
 ];
   constructor() { }

@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from '@angular/router';
-import { PlatModule } from './plat.module';
 import { NgModule } from '@angular/core';
 import { PlatComponent } from './plat.component';
 
