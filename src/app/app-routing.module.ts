@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from "@angular/router";
-import {PlatComponent} from './components/plat/plat.component';
+
 
 const routes: Routes = [
-  { path: 'plat', component: PlatComponent },
+ // { path: 'plat', component: PlatComponent },
+ //{path: 'plat' ,loadChildren: 'app/feature/plat/plat.module#PlatModule'},
+ {path: 'plat' ,loadChildren: () => import('./feature/plat/plat.module').then(m => m.PlatModule)}
 ];
 
 @NgModule({
@@ -14,6 +16,4 @@ const routes: Routes = [
   exports:[RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[
-  PlatComponent
-]
+
