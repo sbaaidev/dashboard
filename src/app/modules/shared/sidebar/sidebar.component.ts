@@ -18,7 +18,11 @@ menueitem=[
   {
     name: 'Gestion des serveurs',
     path: '/serveur'
-}
+},
+  {
+    name: 'Gestion des Categories',
+    path: '/category'
+  }
 ];
   constructor() { }
 
