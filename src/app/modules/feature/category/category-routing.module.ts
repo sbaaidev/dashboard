@@ -5,7 +5,8 @@ import {CategoryDetailComponent} from "./category-detail/category-detail.compone
 
 
 const routes: Routes = [
-  {path:"", component:CategoryComponent},
+  {path:'', component:CategoryComponent},
+  {path:':id', component:CategoryDetailComponent}
 
 
 

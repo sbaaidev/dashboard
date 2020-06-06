@@ -8,7 +8,7 @@
 </div>
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let cat of cats">
-    <button class="btn btn-primary mr-1"><i class="fa fa-info"></i>Detail</button>
+    <button [routerLink]="['/category',cat.idCategory]" class="btn btn-primary mr-1"><i class="fa fa-info"></i>Detail</button>
     <button class="btn btn-danger mr-1"><i class="fa fa-trash"></i>Supprimer</button>
     <button class="btn btn-success mr-1"><i class="fa fa-edit"></i>Modifier</button>
     {{cat.name}}
@@ -16,7 +16,6 @@
 </ul>
 </div>
   <div class="col-md-6 ">
-    <app-category-detail></app-category-detail>
   </div>
 
 </div>

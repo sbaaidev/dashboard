@@ -15,7 +15,7 @@ category :Category=null;
   constructor(private catservices:CategoryService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.params);
+    console.log(this.route.snapshot.params['id']);
 
    const id=this.route.snapshot.params['id'];
     this.catservices.getCategorysById(+id).subscribe(data=>this.category=data)
