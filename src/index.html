@@ -9,37 +9,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 </body>
-<script>
-function toRight() {
-        var v = document.getElementById("sidebar-wrapper");
-        v.classList.remove("toLeft");
-        v.classList.remove("default");
-        v.classList.add("toRight");
-        document.body.style.direction = "rtl";
-        document.body.style.textAlign="right";
-       document.getElementById('wrapper').style.paddingRight="250px";
-       document.getElementById('wrapper').style.paddingLeft="0px";
-
-
-
-
-
+  <script>
+    function toRight() {
+      var v = document.getElementById("sidebar-wrapper");
+      v.classList.remove("toLeft");
+      v.classList.remove("default");
+      v.classList.add("toRight");
+      document.body.style.direction = "rtl";
+      document.body.style.textAlign = "right";
+      document.getElementById('wrapper').style.paddingRight = "250px";
+      document.getElementById('wrapper').style.paddingLeft = "0px";
     }
 
     function toLeft() {
-        var v = document.getElementById("sidebar-wrapper");
-        v.classList.remove("toRight");
-        v.classList.remove("default");
-        v.classList.add("toLeft");
-        document.body.style.direction = "ltr";
-        document.body.style.textAlign="left";
-        document.getElementById('wrapper').style.paddingRight="0px";
-       document.getElementById('wrapper').style.paddingLeft="250px";
-       // document.getElementById("container").style.paddingLeft="180px"
-
+      var v = document.getElementById("sidebar-wrapper");
+      v.classList.remove("toRight");
+      v.classList.remove("default");
+      v.classList.add("toLeft");
+      document.body.style.direction = "ltr";
+      document.body.style.textAlign = "left";
+      document.getElementById('wrapper').style.paddingRight = "0px";
+      document.getElementById('wrapper').style.paddingLeft = "250px";
     }
-
-</script>
+  </script>
 </html>
