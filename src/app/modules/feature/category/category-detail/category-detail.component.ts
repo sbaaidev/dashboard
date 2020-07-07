@@ -1,24 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import {Category} from "../../../../models/category";
-import {ActivatedRoute} from "@angular/router";
-import {CategoryService} from "../category.service";
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Category} from '../../../../models/category';
+import {CategoryService} from '../category.service';
 
 @Component({
   selector: 'app-category-detail',
   templateUrl: './category-detail.component.html',
   styleUrls: ['./category-detail.component.css']
 })
-export class CategoryDetailComponent implements OnInit {
-category :Category=null;
+export class CategoryDetailComponent implements OnInit, OnChanges {
+  category: Category = null;
 
+  @Input() categoryId: number;
 
-  constructor(private catservices:CategoryService,private route:ActivatedRoute) { }
-
-  ngOnInit(): void {
-    console.log(this.route.snapshot.params['id']);
-
-   const id=this.route.snapshot.params['id'];
-    this.catservices.getCategorysById(+id).subscribe(data=>this.category=data)
+  constructor(private categoryServices: CategoryService) {
   }
 
+  ngOnInit(): void {
+  }
+
+  ngOnChanges() {
+    this.categoryServices.getCategorysById(+this.categoryId).subscribe(
+      data => this.category = data
+    );
+  }
 }
