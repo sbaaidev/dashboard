@@ -2,8 +2,9 @@
   <div class="col-md-6 mx-auto">
     <div class="form-group mt-1">
       <label>Nom de la catégorie</label>
-      <input class="form-control" width="50%" type="text" name="nameCat" placeholder="Nom de la categégorie"/>
-      <button class="btn btn-primary btn-block mt-1">Ajouter nouvelle catégorie</button>
+      <input [(ngModel)]='nameCategory' class="form-control" width="50%" type="text" name="nameCategory"
+        placeholder="Nom de la categégorie" />
+      <button (click)="addNewCategory()" class="btn btn-primary btn-block mt-1">Ajouter nouvelle catégorie</button>
     </div>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let category of categories">

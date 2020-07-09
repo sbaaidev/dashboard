@@ -1,28 +1,31 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CategoryService} from './category.service';
-import {Category} from '../../models/category';
+import { Component, Input, OnInit } from '@angular/core';
+import { CategoryService } from './category.service';
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
   categoryId: number;
+  nameCategory: string = '';
+  category: Category;
   productDetails = false;
+  err: string;
 
-  constructor(private categoryService: CategoryService) {
-  }
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.getAllCategorys();
   }
 
   getAllCategorys() {
-    this.categoryService.getcategorys().subscribe(
-      data => this.categories = data
-    );
+    this.categories = [];
+    this.categoryService
+      .getcategorys()
+      .subscribe((data) => (this.categories = data));
   }
 
   viewCategoryDetails(id) {
@@ -30,4 +33,14 @@ export class CategoryComponent implements OnInit {
     this.productDetails = true;
   }
 
+  addNewCategory() {
+    this.category = {
+      name: this.nameCategory,
+    };
+
+    console.log(this.category);
+    this.categoryService
+      .addCategory(this.category)
+      .subscribe((result) => this.getAllCategorys());
+  }
 }
