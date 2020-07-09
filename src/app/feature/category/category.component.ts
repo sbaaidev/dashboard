@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CategoryService } from './category.service';
-import { Category } from '../../models/category';
+import {Component, Input, OnInit} from '@angular/core';
+import {CategoryService} from './category.service';
+import {Category} from '../../models/category';
 
 @Component({
   selector: 'app-category',
@@ -15,7 +15,8 @@ export class CategoryComponent implements OnInit {
   productDetails = false;
   err: string;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) {
+  }
 
   ngOnInit(): void {
     this.getAllCategorys();
@@ -38,9 +39,20 @@ export class CategoryComponent implements OnInit {
       name: this.nameCategory,
     };
 
-    console.log(this.category);
     this.categoryService
       .addCategory(this.category)
-      .subscribe((result) => this.getAllCategorys());
+      .subscribe((result) => {
+        this.reloadData();
+      });
+  }
+
+  reloadData() {
+    this.getAllCategorys();
+  }
+
+  deleteCategory(id: number) {
+    this.categoryService.deleteCategory(id).subscribe(data => {
+      this.reloadData();
+    });
   }
 }

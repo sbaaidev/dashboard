@@ -3,7 +3,7 @@
     <div class="form-group mt-1">
       <label>Nom de la catégorie</label>
       <input [(ngModel)]='nameCategory' class="form-control" width="50%" type="text" name="nameCategory"
-        placeholder="Nom de la categégorie" />
+             placeholder="Nom de la categégorie"/>
       <button (click)="addNewCategory()" class="btn btn-primary btn-block mt-1">Ajouter nouvelle catégorie</button>
     </div>
     <ul class="list-group">
@@ -13,7 +13,7 @@
           <i class="fa fa-info"></i>
         </button>
 
-        <button class="btn btn-danger mr-1">
+        <button (click)="deleteCategory(category.idCategory)" class="btn btn-danger mr-1">
           <i class="fa fa-trash"></i>
         </button>
 

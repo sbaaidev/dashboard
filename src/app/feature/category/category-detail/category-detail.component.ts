@@ -12,14 +12,14 @@ export class CategoryDetailComponent implements OnInit, OnChanges {
 
   @Input() categoryId: number;
 
-  constructor(private categoryServices: CategoryService) {
+  constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
   }
 
   ngOnChanges() {
-    this.categoryServices.getCategorysById(+this.categoryId).subscribe(
+    this.categoryService.getCategorysById(+this.categoryId).subscribe(
       data => this.category = data
     );
   }
