@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CategoryService} from './category.service';
 import {Category} from '../../models/category';
+import {UploadFileService} from 'src/app/core/services/upload-file.service';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-category',
@@ -15,11 +18,23 @@ export class CategoryComponent implements OnInit {
   productDetails = false;
   err: string;
 
-  constructor(private categoryService: CategoryService) {
+  //file props
+  selectedFiles: FileList;
+  currentFile: File;
+  progress = 0;
+  message = '';
+  fileInfos: Observable<any>;
+
+  constructor(
+    private categoryService: CategoryService,
+    private uploadService: UploadFileService
+  ) {
   }
 
   ngOnInit(): void {
     this.getAllCategorys();
+
+    this.fileInfos = this.uploadService.getFiles();
   }
 
   getAllCategorys() {
@@ -27,6 +42,16 @@ export class CategoryComponent implements OnInit {
     this.categoryService
       .getcategorys()
       .subscribe((data) => (this.categories = data));
+  }
+
+  reloadData() {
+    this.getAllCategorys();
+  }
+
+  deleteCategory(id: number) {
+    this.categoryService.deleteCategory(id).subscribe((data) => {
+      this.reloadData();
+    });
   }
 
   viewCategoryDetails(id) {
@@ -41,18 +66,35 @@ export class CategoryComponent implements OnInit {
 
     this.categoryService
       .addCategory(this.category)
-      .subscribe((result) => {
-        this.reloadData();
-      });
+      .subscribe((result) => this.getAllCategorys());
+
+    this.upload();
   }
 
-  reloadData() {
-    this.getAllCategorys();
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
   }
 
-  deleteCategory(id: number) {
-    this.categoryService.deleteCategory(id).subscribe(data => {
-      this.reloadData();
-    });
+  upload() {
+    this.progress = 0;
+
+    this.currentFile = this.selectedFiles.item(0);
+    this.uploadService.upload(this.currentFile).subscribe(
+      (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round((100 * event.loaded) / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.message = event.body.message;
+          //  this.fileInfos = this.uploadService.getFiles();
+        }
+      },
+      (err) => {
+        this.progress = 0;
+        this.message = 'Could not upload the file!';
+        this.currentFile = undefined;
+      }
+    );
+
+    this.selectedFiles = undefined;
   }
 }

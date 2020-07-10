@@ -4,11 +4,31 @@
       <label>Nom de la catégorie</label>
       <input [(ngModel)]='nameCategory' class="form-control" width="50%" type="text" name="nameCategory"
              placeholder="Nom de la categégorie"/>
-      <button (click)="addNewCategory()" class="btn btn-primary btn-block mt-1">Ajouter nouvelle catégorie</button>
+      <label class="btn btn-default">
+        <input type="file" accept="image/*" (change)="selectFile($event)"/>
+      </label>
+      <button (click)="addNewCategory()" [disabled]="!selectedFiles" class="btn btn-primary btn-block mt-1">Ajouter
+        nouvelle catégorie
+      </button>
+      <div *ngIf="currentFile" class="progress">
+        <div
+          class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
+      </div>
+      <div class="alert alert-light" role="alert">{{ message }}</div>
+
     </div>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let category of categories">
         <span>{{category.name}}</span>
+        <span><img width="50" src="http://localhost:8080/api/files/{{category.image}}"></span>
         <button (click)="viewCategoryDetails(category.idCategory)" class="btn btn-primary mr-1">
           <i class="fa fa-info"></i>
         </button>

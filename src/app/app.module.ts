@@ -6,6 +6,7 @@ import {NavbarComponent} from './shared/navbar/navbar.component';
 import {SidebarComponent} from './shared/sidebar/sidebar.component';
 import {NoPageFoundComponent} from './feature/no-page-found/no-page-found.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {AppRoutingModule} from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
