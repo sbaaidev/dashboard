@@ -7,9 +7,10 @@ import { CategoryService } from './category.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 @NgModule({
-  declarations: [CategoryComponent, CategoryDetailComponent],
+  declarations: [CategoryComponent, CategoryDetailComponent, CategoryEditComponent],
   imports: [CommonModule, CategoryRoutingModule, HttpClientModule, FormsModule],
   providers: [CategoryService],
 })

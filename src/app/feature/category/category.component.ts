@@ -4,6 +4,7 @@ import {Category} from '../../models/category';
 import {UploadFileService} from 'src/app/core/services/upload-file.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {timeout} from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -16,6 +17,7 @@ export class CategoryComponent implements OnInit {
   nameCategory: string = '';
   category: Category;
   productDetails = false;
+  productEdit = false;
   err: string;
 
   //file props
@@ -59,6 +61,11 @@ export class CategoryComponent implements OnInit {
     this.productDetails = true;
   }
 
+  editCategory(id) {
+    this.categoryId = id;
+    this.productEdit = true;
+  }
+
   addNewCategory() {
     this.category = {
       name: this.nameCategory,
@@ -66,9 +73,16 @@ export class CategoryComponent implements OnInit {
 
     this.categoryService
       .addCategory(this.category)
-      .subscribe((result) => this.getAllCategorys());
+      .subscribe((result) => {
+          this.upload();
+          setTimeout(() => {
+            this.reloadData();
+          }, 1000);
 
-    this.upload();
+        }
+      );
+
+    this.nameCategory = '';
   }
 
   selectFile(event) {
@@ -85,7 +99,7 @@ export class CategoryComponent implements OnInit {
           this.progress = Math.round((100 * event.loaded) / event.total);
         } else if (event instanceof HttpResponse) {
           this.message = event.body.message;
-          //  this.fileInfos = this.uploadService.getFiles();
+          // this.fileInfos = this.uploadService.getFiles();
         }
       },
       (err) => {
