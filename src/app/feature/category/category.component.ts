@@ -35,8 +35,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategorys();
-
-    this.fileInfos = this.uploadService.getFiles();
+    //this.fileInfos = this.uploadService.getFiles();
   }
 
   getAllCategorys() {
@@ -46,7 +45,7 @@ export class CategoryComponent implements OnInit {
       .subscribe((data) => (this.categories = data));
   }
 
-  reloadData() {
+  public reloadData() {
     this.getAllCategorys();
   }
 

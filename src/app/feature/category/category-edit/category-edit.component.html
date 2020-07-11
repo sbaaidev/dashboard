@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    Edit une categorie
+  </div>
+  <div class="card-body">
+    <label>Id Category
+      <input disabled [(ngModel)]="category.idCategory">
+    </label>
+    <label>Name Category
+      <input [(ngModel)]="category.name" placeholder="name"/>
+    </label>
+    <label>Image
+      <img  width="100px" src="http://localhost:8080/api/files/{{category.image}}">
+      <input type="file"  accept="image/*" (change)="selectFile($event)"/>
+    </label>
+    <div *ngIf="currentFile" class="progress">
+      <div
+        class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar"
+        attr.aria-valuenow="{{ progress }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progress + '%' }"
+      >
+        {{ progress }}%
+      </div>
+    </div>
+  <div  *ngIf="message" class="alert alert-success" role="alert" >{{ message }}</div>
+
+
+    <button (click)="editCategory()"  [disabled]="!selectedFiles"  class="btn btn-primary" >Edit </button>
+
+
+
+
+
+  </div>
+</div>

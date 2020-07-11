@@ -29,4 +29,11 @@ export class CategoryService {
       'http://localhost:8080/api/categorys/' + id
     );
   }
+
+  editCategory(id: number, category: Category) {
+    return this.http.put<Category>(
+      'http://localhost:8080/api/categorys/' + id,
+      category
+    );
+  }
 }
