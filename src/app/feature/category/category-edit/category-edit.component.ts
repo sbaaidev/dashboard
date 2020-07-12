@@ -43,8 +43,6 @@ export class CategoryEditComponent implements OnInit, OnChanges {
         this.category = data;
         this.upload();
       }, error => console.log(error));
-
-
   }
 
   selectFile(event) {
