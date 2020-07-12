@@ -11,7 +11,7 @@
     </label>
     <label>Image
       <img  width="100px" src="http://localhost:8080/api/files/{{category.image}}">
-      <input type="file"  accept="image/*" (change)="selectFile($event)"/>
+      <input type="file"   accept="image/*" (change)="selectFile($event)"/>
     </label>
     <div *ngIf="currentFile" class="progress">
       <div
@@ -28,7 +28,7 @@
   <div  *ngIf="message" class="alert alert-success" role="alert" >{{ message }}</div>
 
 
-    <button (click)="editCategory()"  [disabled]="!selectedFiles"  class="btn btn-primary" >Edit </button>
+    <button (click)="editCategory()"   class="btn btn-primary" >Edit </button>
 
 
 
