@@ -9,7 +9,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 @Component({
   selector: 'app-category-edit',
   templateUrl: './category-edit.component.html',
-  styleUrls: ['./category-edit.component.css']
+  styleUrls: ['./category-edit.component.scss']
 })
 export class CategoryEditComponent implements OnInit, OnChanges {
   category: Category = null;

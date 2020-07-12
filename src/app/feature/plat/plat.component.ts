@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'app-plat',
   templateUrl: './plat.component.html',
-  styleUrls: ['./plat.component.css']
+  styleUrls: ['./plat.component.scss']
 })
 export class PlatComponent implements OnInit {
 

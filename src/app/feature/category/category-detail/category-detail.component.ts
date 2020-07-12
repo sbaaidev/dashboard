@@ -5,7 +5,7 @@ import {CategoryService} from '../category.service';
 @Component({
   selector: 'app-category-detail',
   templateUrl: './category-detail.component.html',
-  styleUrls: ['./category-detail.component.css']
+  styleUrls: ['./category-detail.component.scss']
 })
 export class CategoryDetailComponent implements OnInit, OnChanges {
   category: Category = null;

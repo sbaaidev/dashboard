@@ -1,13 +1,12 @@
-<div id="wrapper" class="toggled">
-  <!-- Sidebar -->
-  <div id="sidebar-wrapper" class="default">
-      <ul class="sidebar-nav">
-          <li class="sidebar-brand"> <a href="#"> Start Bootstrap </a> </li>
-          <li *ngFor="let item of menueitem" >
-            <a  routerLink="{{item.path}}">{{item.name}}</a>
-           </li>
-      </ul>
-  </div> <!-- /#sidebar-wrapper -->
-  <!-- Page Content -->
-     <app-content></app-content>
-</div> <!-- /#wrapper -->
+<!-- Sidebar -->
+<div class="bg-light border-right" id="sidebar-wrapper">
+  <div class="sidebar-heading">TPV Restaurant</div>
+  <div class="list-group list-group-flush">
+    <span *ngFor="let item of menueitem">
+      <a class="list-group-item list-group-item-action bg-light" routerLink="{{item.path}}">
+        {{item.name}}
+      </a>
+    </span>
+  </div>
+</div>
+<!-- /#sidebar-wrapper -->
