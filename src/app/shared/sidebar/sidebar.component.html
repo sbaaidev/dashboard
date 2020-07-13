@@ -4,7 +4,7 @@
   <div class="list-group list-group-flush">
     <span *ngFor="let item of menueitem">
       <a class="list-group-item list-group-item-action bg-light" routerLink="{{item.path}}">
-        <i class="fas fa-home"></i> {{item.name}}
+        <i class="{{item.icon}} mr-1"></i> {{item.name}}
       </a>
     </span>
   </div>
