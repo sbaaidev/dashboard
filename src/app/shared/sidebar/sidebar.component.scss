@@ -42,3 +42,10 @@
     margin-left: -15rem;
   }
 }
+
+#sidebar-wrapper .list-group-item.active {
+  z-index: 2;
+  color: #fc1515;
+  background-color: #677d95;
+  border-color: #eb2855;
+}
