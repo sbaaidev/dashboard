@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Category} from '../../../models/category';
 import {CategoryService} from '../category.service';
 import {CategoryComponent} from '../category.component';
@@ -13,6 +13,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 })
 export class CategoryEditComponent implements OnInit, OnChanges {
   category: Category = null;
+  @Output() eventClick = new EventEmitter();
   @Input() categoryId: number = null;
   //file props
   selectedFiles: FileList;
@@ -38,15 +39,22 @@ export class CategoryEditComponent implements OnInit, OnChanges {
   }
 
   editCategory() {
+
     this.categoryService.editCategory(+this.categoryId, this.category)
       .subscribe(data => {
         this.category = data;
-        this.upload();
+        if (this.selectedFiles !== undefined) {
+          this.upload();
+        }
+        this.eventClick.emit('test');
+
       }, error => console.log(error));
   }
 
   selectFile(event) {
     this.selectedFiles = event.target.files;
+
+
   }
 
   upload() {

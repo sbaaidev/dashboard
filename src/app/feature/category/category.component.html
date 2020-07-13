@@ -55,7 +55,7 @@
      </div>
   <div class="col-md-6 ">
     <app-category-detail *ngIf="productDetails" [categoryId]="categoryId"></app-category-detail>
-    <app-category-edit *ngIf="productEdit" [categoryId]="categoryId"></app-category-edit>
+    <app-category-edit *ngIf="productEdit" (eventClick)="reloadDataEdit($event)" [categoryId]="categoryId"></app-category-edit>
   </div>
 
 </div>

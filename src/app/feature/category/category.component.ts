@@ -45,8 +45,14 @@ export class CategoryComponent implements OnInit {
       .subscribe((data) => (this.categories = data));
   }
 
-  public reloadData() {
+  reloadData() {
     this.getAllCategorys();
+  }
+
+  reloadDataEdit(data) {
+    setTimeout(() => {
+      this.reloadData();
+    }, 200);
   }
 
   deleteCategory(id: number) {
