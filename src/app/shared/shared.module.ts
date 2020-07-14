@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {AppRoutingModule} from '../app-routing.module';
-import {RouterModule} from '@angular/router';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -16,10 +17,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
-
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   exports: [
     NavbarComponent,

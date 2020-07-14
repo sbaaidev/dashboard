@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {CategoryService} from './category.service';
 import {Category} from '../../models/category';
 import {UploadFileService} from 'src/app/core/services/upload-file.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {timeout} from 'rxjs/operators';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-category',
@@ -12,6 +12,8 @@ import {timeout} from 'rxjs/operators';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
+  modalRef: BsModalRef;
+
   categories: Category[] = [];
   categoryId: number;
   nameCategory: string = '';
@@ -19,6 +21,13 @@ export class CategoryComponent implements OnInit {
   productDetails = false;
   productEdit = false;
   err: string;
+
+  // Delete category modal setting
+  ModalIdCategory: any;
+  config = {
+    animated: true
+  };
+
 
   //file props
   selectedFiles: FileList;
@@ -28,6 +37,7 @@ export class CategoryComponent implements OnInit {
   fileInfos: Observable<any>;
 
   constructor(
+    public modalService: BsModalService,
     private categoryService: CategoryService,
     private uploadService: UploadFileService
   ) {
@@ -35,7 +45,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategorys();
-    //this.fileInfos = this.uploadService.getFiles();
+    // this.fileInfos = this.uploadService.getFiles();
   }
 
   getAllCategorys() {
@@ -88,6 +98,11 @@ export class CategoryComponent implements OnInit {
       );
 
     this.nameCategory = '';
+  }
+
+  openModal(template: TemplateRef<any>, value) {
+    this.ModalIdCategory = value;
+    this.modalRef = this.modalService.show(template, this.config);
   }
 
   selectFile(event) {
