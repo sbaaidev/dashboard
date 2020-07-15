@@ -33,6 +33,7 @@ export class CategoryEditComponent implements OnInit, OnChanges {
     this.categoryService.getCategorysById(+this.categoryId).subscribe(
       data => {
         this.category = data;
+        this.categoryId = this.categoryId;
 
       }
     );
