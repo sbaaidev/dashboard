@@ -3,9 +3,30 @@
   <div class="sidebar-heading">TPV Restaurant</div>
   <div class="list-group list-group-flush">
     <span *ngFor="let item of menueitem">
-      <a class="list-group-item list-group-item-action bg-light" routerLink="{{item.path}}" [routerLinkActive]="['active']">
+      <a *ngIf="item.name !== 'Plats'; else sousItem"
+         class="list-group-item list-group-item-action bg-light"
+         routerLink="{{item.path}}" [routerLinkActive]="['active']">
         <i class="{{item.icon}} mr-1"></i> {{item.name}}
       </a>
+
+      <ng-template #sousItem>
+        <a (click)="showHideSubMenu()" class="list-group-item list-group-item-action bg-light">
+          <i class="{{item.icon}} mr-1"></i> {{item.name}}
+          <span *ngIf="!showSubMenu" class="float-right">
+            <i class="fas fa-caret-down"></i>
+          </span>
+          <span *ngIf="showSubMenu" class="float-right">
+            <i class="fas fa-caret-up"></i>
+          </span>
+        </a>
+          <span [className]="showSubMenu ? 'show' : 'hide'"
+                *ngFor="let sitem of item.innerItem">
+            <a class="dropdown-item list-group-item list-group-item-action bg-light subMenu"
+               routerLink="{{sitem.path}}">
+              <i class="{{sitem.icon}} mr-1"></i> {{sitem.name}}
+            </a>
+          </span>
+      </ng-template>
     </span>
   </div>
 </div>

@@ -6,10 +6,20 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  showSubMenu = false;
   menueitem = [
+    {
+      name: 'Accueil',
+      icon: 'fas fa-home',
+      path: '/home'
+    },
     {
       name: 'Plats',
       icon: 'fas fa-concierge-bell',
+      innerItem: [
+        {name: 'Categories', icon: 'fas fa-list', path: '/category'},
+        {name: 'Plats', icon: 'fas fa-utensils', path: '/plat'},
+      ],
       path: '/plat'
     },
     {
@@ -21,20 +31,17 @@ export class SidebarComponent implements OnInit {
       name: 'Serveurs',
       icon: 'fas fa-user-tie',
       path: '/serveur'
-    },
-    {
-      name: 'Categories',
-      icon: 'fas fa-list',
-      path: '/category'
     }
   ];
 
   constructor() {
   }
 
-
   ngOnInit(): void {
 
   }
 
+  showHideSubMenu(){
+    this.showSubMenu = !this.showSubMenu;
+  }
 }
