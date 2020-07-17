@@ -10,7 +10,10 @@ const routes: Routes = [
   {path: 'plat', loadChildren: () => import('./feature/plat/plat.module').then(m => m.PlatModule)},
   {path: 'serveur', loadChildren: () => import('./feature/serveur/serveur.module').then(m => m.ServeurModule)},
   {path: 'table', loadChildren: () => import('./feature/table/table.module').then(m => m.TableModule)},
-  {path: 'category', loadChildren: () => import('./feature/category/category.module').then(m => m.CategoryModule)}
+  {path: 'category', loadChildren: () => import('./feature/category/category.module').then(m => m.CategoryModule)},
+  {path: '**',
+    component: NoPageFoundComponent
+  }
 ];
 
 @NgModule({
